@@ -87,9 +87,11 @@ private EditText et_user_name,et_psw;
                     //保存登录状态和登录用户名
                     saveLoginStatues(true,userName);
                     //把登录成功的状态传递到MainActivity中
-                    Intent data=new Intent();
+                    Intent data=new Intent(LoginActivity.this,Main2Activity.class);
                     data.putExtra("isLogin",true);
+                    data.putExtra("userName",userName);
                     setResult(RESULT_OK,data);
+                    startActivity(data);
                     LoginActivity.this.finish();
                     return;
                 }else if ((!TextUtils.isEmpty(spPsw)&&!md5Psw.equals(spPsw))){

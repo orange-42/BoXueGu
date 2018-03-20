@@ -1,6 +1,7 @@
 package cn.edu.gdmec.android.boxuegu.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -32,6 +33,7 @@ public LinearLayout mBottomLayout;
 *底部按钮
  */
 private View mCourseBtn;
+private TextView tv1;
 private View mExerciseBtn;
 private View mMyInfoBtn;
 private TextView tv_course;
@@ -83,6 +85,8 @@ private void initBottomBar(){
 }
 private void initBodyLayout(){
     mBodyLayout = (FrameLayout)findViewById(R.id.main_body);
+
+
 }
 /*
 *控件的点击事件

@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private TextView tv_back;//返回按钮
     private Button btn_register;//注册按钮
     //用户名、密码、再次输入的密码控件
+    private EditText et_user_name;
     private EditText et_username,et_psw,et_psw_again;
     //用户名、密码、再次输入的密码的控件的获取值
     private String userName,psw,pswAgain;
@@ -98,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
     *获取控件中的字符串
      */
     private void getEditString(){
-        userName=et_user_name.getText().toString.trims();
+        userName=et_user_name.getText().toString().trim();
         psw=et_psw.getText().toString().trim();
         pswAgain=et_psw_again.getText().toString().trim();
     }
