@@ -62,6 +62,8 @@ private EditText et_user_name,et_psw;
         tv_find_psw.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                Intent intent = new Intent(LoginActivity.this,FindPswActivity.class);
+                startActivity(intent);
                 //跳转到找回密码界面(此界面暂时未创建）
             }
         });
@@ -87,9 +89,8 @@ private EditText et_user_name,et_psw;
                     //保存登录状态和登录用户名
                     saveLoginStatues(true,userName);
                     //把登录成功的状态传递到MainActivity中
-                    Intent data=new Intent(LoginActivity.this,Main2Activity.class);
+                    Intent data=new Intent(LoginActivity.this,MainActivity.class);
                     data.putExtra("isLogin",true);
-                    data.putExtra("userName",userName);
                     setResult(RESULT_OK,data);
                     startActivity(data);
                     LoginActivity.this.finish();
