@@ -31,18 +31,18 @@ public class DBUtils {
      */
     public void saveUserInfo(UserBean bean){
         ContentValues cv = new ContentValues();
-        cv.put("userName",bean.userName);
-        cv.put("nickName",bean.nickName);
-        cv.put("sex",bean.sex);
-        cv.put("signature",bean.signature);
+        cv.put("userName", bean.userName);
+        cv.put("nickName", bean.nickName);
+        cv.put("sex", bean.sex);
+        cv.put("signature", bean.signature);
         db.insert(SQLiteHelper.U_USERINFO,null,cv);
     }
     /*
     *获取个人资料信息
      */
     public  UserBean getUserInfo(String userName){
-        String sql="SELECT * FROM"+SQLiteHelper.U_USERINFO+
-                "WHERE userName=?";
+        String sql="SELECT * FROM "+SQLiteHelper.U_USERINFO+
+                " WHERE userName=?";
         Cursor cursor=db.rawQuery(sql, new String[]{userName});
         UserBean bean = null;
         while (cursor.moveToNext()){
