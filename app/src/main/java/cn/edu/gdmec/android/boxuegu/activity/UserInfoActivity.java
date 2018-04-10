@@ -21,11 +21,12 @@ import cn.edu.gdmec.android.boxuegu.activity.utils.DBUtils;
 public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView tv_back;
     private TextView tv_main_title;
-    private TextView tv_nickName, tv_signature, tv_user_name, tv_sex;
-    private RelativeLayout rl_nickName, rl_sex, rl_signature, rl_title_bar;
+    private TextView tv_nickName, tv_signature, tv_user_name, tv_sex,tv_qq;
+    private RelativeLayout rl_nickName, rl_sex, rl_signature, rl_title_bar,rl_qq;
     private String spUserName;
     private static final int CHANGE_NICKNAME=1;//修改昵称的自定义常量
     private static final int CHANGE_SIGNATURE=2;//修改签名的自定义常量
+    private static final int CHANGE_QQ=3; //修改qq的自定义常量
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +64,13 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         rl_nickName=(RelativeLayout)findViewById(R.id.rl_nickName);
         rl_sex=(RelativeLayout)findViewById(R.id.rl_sex);
         rl_signature=(RelativeLayout)findViewById(R.id.rl_signature);
+        rl_qq=(RelativeLayout)findViewById(R.id.rl_qq);
         tv_nickName=(TextView)findViewById(R.id.tv_nickName);
         tv_user_name=(TextView)findViewById(R.id.tv_user_name);
         tv_sex=(TextView)findViewById(R.id.tv_sex);
         tv_signature=(TextView)findViewById(R.id.tv_signature);
+        tv_qq=(TextView)findViewById(R.id.tv_qq);
+
     }
     /*
     *获取数据
@@ -81,6 +85,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             bean.nickName="问答精灵";
             bean.sex="男";
             bean.signature="问答精灵";
+            bean.qq="825081363";
             //保存用户信息到数据库
             DBUtils.getInstance(this).saveUserInfo(bean);
 
@@ -95,6 +100,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         tv_user_name.setText(bean.userName);
         tv_sex.setText(bean.sex);
         tv_signature.setText(bean.signature);
+        tv_qq.setText(bean.qq);
     }
     /*
     *设置控件的点击监听事件
@@ -104,6 +110,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
        rl_nickName.setOnClickListener(this);
        rl_sex.setOnClickListener(this);
        rl_signature.setOnClickListener(this);
+       rl_qq.setOnClickListener(this);
    }
    /*
    *控件的点击事件
@@ -135,6 +142,15 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                 bdSignature.putInt("flag",2);    //flag传递2时表示是修改签名
                 enterActivityForResult(ChangeUserInfoActivity.class,
                         CHANGE_SIGNATURE,bdSignature);  //跳转到个人资料修改界面
+                break;
+            case R.id.rl_qq:     //qq的点击事件
+                String qq = tv_qq.getText().toString();//获取qq控件上的数据
+                Bundle bdqq = new Bundle();
+                bdqq.putString("content",qq);//传递界面上的qq数据
+                bdqq.putString("qq","QQ");
+                bdqq.putInt("flag",3);   //flag传递3时表示修改qq
+                enterActivityForResult(ChangeUserInfoActivity.class,
+                        CHANGE_QQ,bdqq);//跳转到个人资料修改界面
                 break;
             default:
                 break;
@@ -175,6 +191,20 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
                     DBUtils.getInstance(UserInfoActivity.this).updateUserInfo(
                             "signature",new_info,spUserName
                     );
+                }
+                break;
+            case CHANGE_QQ:   //个人资料修改界面回传过来的qq
+                if(data!=null){
+                new_info=data.getStringExtra("qq");
+                if(TextUtils.isEmpty(new_info)){
+                    return;
+                }
+                tv_qq.setText(new_info);
+                //更新数据库中的qq
+                    DBUtils.getInstance(UserInfoActivity.this).updateUserInfo(
+                            "qq",new_info,spUserName
+                    );
+
                 }
                 break;
         }

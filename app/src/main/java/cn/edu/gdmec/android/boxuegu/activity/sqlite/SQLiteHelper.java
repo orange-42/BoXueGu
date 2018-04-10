@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class SQLiteHelper extends SQLiteOpenHelper{
-    private static final int DB_VERSION=1;
+    private static final int DB_VERSION=2;
     public static String DB_NAME = "bxg.db";
     public static final String U_USERINFO="userinfo";//个人资料
     public SQLiteHelper(Context context){
@@ -25,7 +25,8 @@ public class SQLiteHelper extends SQLiteOpenHelper{
                  + "userName VARCHAR, "     //用户名
                  + "nickName VARCHAR,"      //昵称
                  + "sex VARCHAR, "          //性别
-                 + "signature VARCHAR"      //签名
+                 + "signature VARCHAR,"      //签名
+                 + "qq VARCHAR"
                  + ")");
 
     }
