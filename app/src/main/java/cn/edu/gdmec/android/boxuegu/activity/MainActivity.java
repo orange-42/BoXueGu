@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.edu.gdmec.android.boxuegu.R;
+import cn.edu.gdmec.android.boxuegu.activity.View.ExercisesView;
 import cn.edu.gdmec.android.boxuegu.activity.View.MyInfoView;
 
 import static android.view.KeyEvent.KEYCODE_BACK;
@@ -46,6 +47,7 @@ private ImageView iv_myInfo;
 private TextView tv_back;
 private  TextView tv_main_title;
 private RelativeLayout rl_title_bar;
+private ExercisesView mExercisesView;
 private MyInfoView mMyInfoView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,6 +201,13 @@ switch (v.getId()){
                 break;
             case 1:
                 //习题界面
+                if(mExercisesView==null){
+                    mExercisesView=new ExercisesView(this);
+                    mBodyLayout.addView(mExercisesView.getView());
+                }else {
+                    mExercisesView.getView();
+                }
+                mExercisesView.showView();
                 break;
             case 2:
                 if(mMyInfoView==null){
