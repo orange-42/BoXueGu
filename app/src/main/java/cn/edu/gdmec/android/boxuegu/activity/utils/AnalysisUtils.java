@@ -3,6 +3,7 @@ package cn.edu.gdmec.android.boxuegu.activity.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Xml;
+import android.widget.ImageView;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -76,4 +77,11 @@ public class AnalysisUtils {
 return exercisesInfos;
 
 }
+
+    public static void setABCDEnable(boolean value, ImageView iv_a, ImageView iv_b, ImageView iv_c, ImageView iv_d) {
+        iv_a.setEnabled(value);
+        iv_b.setEnabled(value);
+        iv_c.setEnabled(value);
+        iv_d.setEnabled(value);
+    }
 }
